@@ -81,4 +81,12 @@ abstract class Service {
 
     }
 
+    public function getAll($columns = array('*')) {
+        return (object) [
+            "status" => 200,
+            "message" => __("messages.{$this->module}.view.200"),
+            "list" => $this->repository->getAll($columns)
+        ];
+
+    }
 }

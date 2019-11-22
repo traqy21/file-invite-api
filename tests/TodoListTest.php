@@ -90,6 +90,21 @@ class TodoListTest extends TestCase {
         ]);
     }
 
+    public function testTransactionLogs() {
+
+        /* 200 */
+        $response = $this->get("transaction/logs"); 
+        $response->assertResponseStatus(200);
+        $response->seeJsonStructure([
+            'list' => [
+                '*' => [
+                    "message",
+                    "id",
+                    "created_at"
+                ]
+            ],
+        ]);
+    }
 
 
 }

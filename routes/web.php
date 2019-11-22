@@ -26,7 +26,7 @@ $router->group(['prefix' => "item"], function() use ($router) {
         $router->get("incomplete", ["uses" => "ItemController@incompleteList"]);
         $router->get("completed", ["uses" => "ItemController@completedList"]);
     });
-
-
 });
+
+$router->get("transaction/logs", ["uses" => "TransactionController@logs"]);
 

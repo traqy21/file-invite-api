@@ -110,4 +110,7 @@ abstract class Repository {
             ->get($columns);
     }
 
+    public function getAll($columns = array('*')) {
+        return $this->model->get($columns);
+    }
 }

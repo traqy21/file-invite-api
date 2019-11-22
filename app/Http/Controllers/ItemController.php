@@ -64,6 +64,7 @@ class ItemController extends Controller
         ], $result->status);
     }
 
+
     public function completedList(){
         $result = $this->service->findAllByOrderBy("is_completed",1, ['uuid', 'name']);
         return response()->json([
