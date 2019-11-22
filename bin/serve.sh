@@ -1,2 +1,3 @@
 #!/bin/sh
-php -S localhost:8002 -t public
+docker-compose build
+docker-compose up

@@ -1,13 +1,14 @@
 version: '3'
 services:
-  
-  #PHP Service
+
   app:
     build:
       context: .
-      dockerfile: .docker/DockerFile
+      dockerfile: .docker/php/Dockerfile
     image: file-invite/php
-    container_name: app
+    container_name: app_todo_list
+    depends_on:
+      - db
     restart: unless-stopped
     tty: true
     environment:
@@ -19,35 +20,17 @@ services:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
       DB_CONNECTION: mysql
-      DB_HOST: db
+      DB_HOST: db-mysql
       DB_PORT: 3306
       DB_DATABASE: file_db
-      DB_USERNAME: traqy
-      DB_PASSWORD: traqy21
+      DB_USERNAME: root
+      DB_PASSWORD: root
       CACHE_DRIVER: file
       QUEUE_DRIVER: sync
-    working_dir: /var/www
-    volumes:
-       - ./:/var/www
-       - ./.docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-       - ./.docker/nginx/etc/hosts:/etc/hosts
-    networks:
-      - app-network
-
-
-  #Nginx Service
-  webserver:
-    image: nginx:alpine
-    container_name: webserver
-    restart: unless-stopped
-    tty: true
     ports:
-      - "8007:80"
-      - "443:443"
+      - 7000:80
     volumes:
-      - ./:/var/www
-      - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
-      - ./.docker/nginx/vhost.d/:/etc/nginx/vhost.d/
+        - .:/var/www/html
     networks:
       - app-network
 
@@ -55,7 +38,7 @@ services:
   #MySQL Service
   db:
     image: mysql:5.7.22
-    container_name: db
+    container_name: db-mysql
     restart: unless-stopped
     tty: true
     ports:
@@ -63,8 +46,8 @@ services:
     environment:
       MYSQL_DATABASE: file_db
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: traqy
-      MYSQL_PASSWORD: traqy21
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:

@@ -5,11 +5,11 @@ then
         if [ $2 -gt 0 ]
         then
             rm test.html && vendor/phpunit/phpunit/phpunit --filter $3 >> test.html
-            echo "Access this to browser: file:///var/www/personal/traqy-car-form-app-lumen/test.html"
+            echo "Access this to browser: file:///var/www/personal/file-invite-test/test.html"
             echo "Test success"
         else
             rm test.html && vendor/phpunit/phpunit/phpunit >> test.html
-            echo "Access this to browser: file:///var/www/personal/traqy-car-form-app-lumen/test.html"
+            echo "Access this to browser: file:///var/www/personal/file-invite-test/test.html"
             echo "Test success"
         fi
 

@@ -16,8 +16,17 @@ $router->get('/', function () use ($router) {
 });
 
 
-//Customer
-$router->post("/login", "UserController@login");
-$router->group(['middleware' => "auth:user"], function() use ($router) {
-//    $router->post("agent/view", "AgentController@viewByBrand");
+$router->group(['prefix' => "item"], function() use ($router) {
+    $router->post("add", ["uses" => "ItemController@add"]);
+    $router->get("delete/{uuid}", ["uses" => "ItemController@delete"]);
+    $router->get("complete/{uuid}", ["uses" => "ItemController@complete"]);
+    $router->get("incomplete/{uuid}", ["uses" => "ItemController@incomplete"]);
+
+    $router->group(['prefix' => "list"], function() use ($router) {
+        $router->get("incomplete", ["uses" => "ItemController@incompleteList"]);
+        $router->get("completed", ["uses" => "ItemController@completedList"]);
+    });
+
+
 });
+

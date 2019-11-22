@@ -1,1 +1,0 @@
-CREATE DATABASE file_db;

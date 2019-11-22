@@ -100,4 +100,14 @@ abstract class Repository {
         return $this->model->get();
     }
 
+    public function findAllBy($attribute, $value, $columns = array('*')) {
+        return $this->model->where($attribute, '=', $value)->get($columns);
+    }
+
+    public function findAllByOrderBy($attribute, $value, $columns = array('*'), $orderByField = 'id', $orderBy = 'asc') {
+        return $this->model->where($attribute, '=', $value)
+            ->orderBy($orderByField, $orderBy)
+            ->get($columns);
+    }
+
 }

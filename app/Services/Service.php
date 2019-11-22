@@ -32,6 +32,7 @@ abstract class Service {
 
     public function delete(Model $model) {
         $delete = $this->repository->delete($model);
+
         if ($delete) {
             return (object) [
                         "status" => 200,
@@ -61,6 +62,23 @@ abstract class Service {
                     "message" => __("messages.{$this->module}.view.200"),
                     "list" => $collection
         ];
+    }
+
+    public function findAllBy($attribute, $value, $columns = array('*')) {
+        return (object) [
+            "status" => 200,
+            "message" => __("messages.{$this->module}.view.200"),
+            "list" => $this->repository->findAllBy($attribute, $value, $columns)
+        ];
+    }
+
+    public function findAllByOrderBy($attribute, $value, $columns = array('*'), $orderByField = 'id', $orderBy = 'asc') {
+        return (object) [
+            "status" => 200,
+            "message" => __("messages.{$this->module}.view.200"),
+            "list" => $this->repository->findAllByOrderBy($attribute, $value, $columns, $orderByField, $orderBy)
+        ];
+
     }
 
 }
