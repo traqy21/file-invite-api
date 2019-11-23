@@ -9,7 +9,7 @@
 	- https://docs.docker.com/compose/install/
 
 #### Running the api project
-* Execute bash command ( ./bin/serve.sh ) 
+* Execute bash command ( ./bin/serve.sh ) from the project directory  
 
 #### Coded by
 * Traqueña, Aries Jay C.
