@@ -110,7 +110,9 @@ abstract class Repository {
             ->get($columns);
     }
 
-    public function getAll($columns = array('*')) {
-        return $this->model->get($columns);
+    public function getAll($columns = array('*'), $orderByField = 'id', $orderBy = 'desc') {
+        return $this->model
+                    ->orderBy($orderByField, $orderBy)
+                    ->get($columns);
     }
 }

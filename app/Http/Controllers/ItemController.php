@@ -57,7 +57,7 @@ class ItemController extends Controller
     }
 
     public function incompleteList(){
-        $result = $this->service->findAllByOrderBy("is_completed",0, ['uuid', 'name']);
+        $result = $this->service->findAllByOrderBy("is_completed",0, ['uuid', 'name', 'is_completed']);
         return response()->json([
             "message" => $result->message,
             "list" => $result->list
@@ -66,7 +66,7 @@ class ItemController extends Controller
 
 
     public function completedList(){
-        $result = $this->service->findAllByOrderBy("is_completed",1, ['uuid', 'name']);
+        $result = $this->service->findAllByOrderBy("is_completed",1, ['uuid', 'name', 'is_completed']);
         return response()->json([
             "message" => $result->message,
             "list" => $result->list
